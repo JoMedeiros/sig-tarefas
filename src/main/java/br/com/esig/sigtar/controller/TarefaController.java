@@ -8,9 +8,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.esig.sigtar.dao.TarefaDAO;
+import br.com.esig.sigtar.dao.UsuarioDAO;
 import br.com.esig.sigtar.model.Tarefa;
 
-@Named("tarefaBean")
+@Named("tarefaCtl")
 @ApplicationScoped
 public class TarefaController implements Serializable {
 
@@ -19,27 +20,43 @@ public class TarefaController implements Serializable {
 	// ID da Tarefa na tabela a ser excluída ou alterada
 	private Long id;
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	private Long responsavel_id;
+	
 	@Inject
 	private Tarefa tarefa;
 	
 	@Inject
 	private TarefaDAO tarefaDAO;
 	
+	@Inject
+	private UsuarioDAO usuarioDAO;
+	
 	public String adicionarTarefa() {
+		tarefa.setResponsavel(usuarioDAO.getUsuario(responsavel_id));
 		tarefaDAO.adicionar(tarefa);
+        return "Home.xhtml?faces-redirect=true";
+	}
+
+	public String goToEditar(Tarefa tarefa) {
+		this.tarefa = tarefa;
+		return "EditarTarefa.xhtml?faces-redirect=true";
+	}
+	
+	public String atualizarTarefa() {
+		tarefaDAO.atualizar(this.tarefa);
+        return "Home.xhtml?faces-redirect=true";
+	}
+
+	
+	public String excluirTarefa(long id) {
+		tarefaDAO.remover(id);
 		return "";
 	}
 	
-	public String excluirTarefa() {
-		tarefaDAO.remover(this.id);
+	public String concluirTarefa(long id) {
+		Tarefa tarefa = tarefaDAO.getTarefa(id);
+		tarefa.setConcluida(true);
+		tarefaDAO.atualizar(tarefa);
 		return "";
 	}
 
@@ -58,10 +75,26 @@ public class TarefaController implements Serializable {
 			return tarefaDAO.filtrar(tarefa);
 	}
 	
-	public String filtrarTarefas() {
-		// Esse método serve somente para recarregar a página que irá
-		// executar getTarefas com o objeto tarefa de filtro
-		return "";
+//	public String filtrarTarefas() {
+//		// Esse método serve somente para recarregar a página que irá
+//		// executar getTarefas com o objeto tarefa de filtro
+//		return "";
+//	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getResponsavel_id() {
+		return responsavel_id;
+	}
+
+	public void setResponsavel_id(Long responsavel_id) {
+		this.responsavel_id = responsavel_id;
 	}
 
 }

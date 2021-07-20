@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SIGTarefas - Lista de Tarefas</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h1>Bem-vindo ao SigTarefas</h1>
+
+	<h:panelGrid columns="2">
+		<h:form>
+			<h:link class="button" value="Cadastrar Usuário"
+				outcome="/CadastrarUsuario.xhtml" />
+			<h:link class="button" value="Cadastrar Tarefa"
+				outcome="/CadastrarTarefa.xhtml" />
+		</h:form>
+	</h:panelGrid>
+			<h:form>
+	<!-- 			<h:panelGrid columns="2"> -->
+
+	<!-- 			<h:outputText value="Número" /> -->
+	<!-- 			<h:inputText value="#{tarefaCtl.tarefa.id}" /> -->
+
+	<!-- 			<h:outputText value="Título/Descrição" /> -->
+	<!-- 			<h:inputText value="#{tarefaBean.tarefa.titulo}" /> -->
+
+	<!-- 			<h:outputText value="Responsável" /> -->
+	<!-- 			<h:selectOneMenu> -->
+	<!-- 				<f:selectItem itemValue="" itemLabel="Todos"/> -->
+	<!-- 				<f:selectItems value="#{tarefaBean.tarefas}" var="tar"  -->
+	<!-- 					itemValue="#{tar.titulo}" itemLabel="#{tar.titulo}" /> -->
+	<!-- 			</h:selectOneMenu> -->
+
+	<!-- 			<h:outputText value="Situação" /> -->
+	<!-- 			<h:selectOneMenu value="#{tarefaBean.tarefa.concluida}"> -->
+	<!-- 				<f:selectItem itemValue="true" itemLabel="concluída" /> -->
+	<!-- 				<f:selectItem itemValue="false" itemLabel="em aberto" /> -->
+	<!-- 			</h:selectOneMenu> -->
+
+	<!-- 			<h:commandButton value="Buscar" action="#{tarefaBean.filtrarTarefas}" /> -->
+	<!-- 			<h:commandLink value="Cadastrar Tarefa" -->
+	<!-- 				action="CadastrarTarefa.xhtml" /> -->
+	<!-- 		</h:panelGrid> -->
+
+	<h2>Lista de Tarefas</h2>
+
+	<h:dataTable value="#{tarefaCtl.tarefas}" var="t"
+		styleClass="order-table"
+		headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row"
+	>
+		<h:column>
+			<f:facet name="header">Número</f:facet>
+			#{t.id}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Título</f:facet>
+			#{t.titulo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Responsável</f:facet>
+			#{t.responsavel.nome}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Ações</f:facet>
+				<h:commandButton value="Editar"
+					action="#{tarefaCtl.goToEditar(t)}" 
+					class="button-delete">
+				</h:commandButton>
+				<h:commandButton value="Excluir"
+					action="#{tarefaCtl.excluirTarefa(t.id)}" 
+					class="button-delete">
+				</h:commandButton>
+				<h:commandButton value="Concluir"
+					action="#{tarefaCtl.concluirTarefa(t.id)}" class="button">
+				</h:commandButton>
+			</h:column>
+	</h:dataTable>
+		</h:form>
+
+</h:body>
+</html>

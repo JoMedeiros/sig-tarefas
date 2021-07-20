@@ -19,7 +19,12 @@ public class TarefaDAOImpl implements TarefaDAO, Serializable {
 
 	@Override
 	public void adicionar(Tarefa tarefa) {
+		//Valores padrão
+		tarefa.setConcluida(false);
+		
+		manager.getTransaction().begin();
 		manager.persist(tarefa);
+		manager.getTransaction().commit();
 	}
 
 	@Override
@@ -42,7 +47,9 @@ public class TarefaDAOImpl implements TarefaDAO, Serializable {
 
 	@Override
 	public void atualizar(Tarefa tarefa) {
+		manager.getTransaction().begin();
 		manager.merge(tarefa);
+		manager.getTransaction().commit();
 	}
 
 	@Override

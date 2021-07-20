@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SIGTarefas - Cadastrar Usuário</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h1>Cadastro de Usuário</h1>
+	<h:form>
+		<small>Atenção: A senha está sendo salva como plain text.
+		Para uma implementação de autenticação seria necessário encriptação
+		com algum algoritmo de hashing seguro como BCrypt.</small>
+		<h:panelGrid columns="2">
+			<h:outputText value="Nome" />
+			<h:inputText value="#{usuarioCtl.usuarioForm.nome}" />
+			<h:outputText value="Senha" />
+			<h:inputSecret value="#{usuarioCtl.usuarioForm.senha}" />
+			<h:commandButton value="Cadastrar Usuário"
+				action="#{usuarioCtl.cadastrarUsuario}" />
+			<h:link value="Voltar" outcome="/Home.xhtml" class="button" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

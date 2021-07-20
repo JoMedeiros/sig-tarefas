@@ -1,7 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,700&display=swap')
+	;
 
 body {
 	font-size: 16px;
 	font-family: 'Merriweather', serif;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Crimson Text', serif;
+	font-style: italic;
+	font-weight: 700;
+}
+
+.card {
+	margin: 0 auto; /* Added */
+	float: none; /* Added */
+	margin-bottom: 10px; /* Added */
+}
+
+.button {
+	text-decoration: none;
+	color: #555;
+	background-color: #FEFEFE;
+	padding: 5px 5px 5px 5px;
+	border-top: 1px solid #888;
+	border-right: 1px solid #888;
+	border-bottom: 1px solid #888;
+	border-left: 1px solid #888;
+	margin: 5px 5px 5px 5px;
+}
+
+.button-delete {
+	text-decoration: none;
+	color: #555;
+	background-color: #d9534f;
+	padding: 5px 5px 5px 5px;
+	border-top: 1px solid #888;
+	border-right: 1px solid #888;
+	border-bottom: 1px solid #888;
+	border-left: 1px solid #888;
+	margin: 5px 5px 5px 5px;
+}
+
+/* Table Syle */
+.order-table{   
+    border-collapse:collapse;
+}
+
+.order-table-header{
+    text-align: center;
+    background: none repeat scroll 0 0 #E5E5E5;
+    border-bottom: 1px solid #BBBBBB;
+    padding: 16px;
+}
+
+.order-table-odd-row{
+    text-align: center;
+    background: none repeat scroll 0 0 #FFF;
+    border-top: 1px solid #BBB;
+}
+
+.order-table-even-row{
+    text-align:center;
+    background:none repeat scroll 0 0 #F9F9F9;
+    border-top:1px solid #BBB;
 }

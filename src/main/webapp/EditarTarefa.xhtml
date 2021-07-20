@@ -16,13 +16,7 @@
 			<h:inputText value="#{tarefaCtl.tarefa.titulo}" />
 
 			<h:outputText value="Descrição" />
-			<h:inputTextarea value="#{tarefaCtl.tarefa.descricao}"/>
-
-			<h:outputText value="Responsável" />
-			<h:selectOneMenu value="#{tarefaCtl.responsavel_id}">
-				<f:selectItems value="#{usuarioCtl.usuarios}" var="usuario" 
-					itemValue="#{usuario.id}" itemLabel="#{usuario.nome}" />
-			</h:selectOneMenu>
+			<h:inputTextarea value="#{tarefaCtl.tarefa.descricao}" />
 
 			<h:outputText value="Prioridade" />
 			<h:selectOneMenu value="#{tarefaCtl.tarefa.prioridade}">
@@ -31,11 +25,17 @@
 				<f:selectItem itemValue="baixa" itemLabel="Baixa" />
 			</h:selectOneMenu>
 
+			<h:outputText value="Responsável" />
+			<h:selectOneMenu value="#{tarefaCtl.responsavel_id}">
+				<f:selectItems value="#{usuarioCtl.usuarios}" var="usuario" 
+					itemValue="#{usuario.id}" itemLabel="#{usuario.nome}" />
+			</h:selectOneMenu>
+
 			<h:outputText value="Deadline" />
 			<h:inputText type="date" />
 
-			<h:commandButton value="Cadastrar" class="button"
-				action="#{tarefaCtl.adicionarTarefa}" />
+			<h:commandButton value="Salvar" class="button"
+				action="#{tarefaCtl.atualizarTarefa}" />
 			<h:link value="Voltar" outcome="/Home.xhtml" class="button" />
 		</h:panelGrid>
 

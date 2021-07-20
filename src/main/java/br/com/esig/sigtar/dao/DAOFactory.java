@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 @ApplicationScoped
-public class TarefaDAOFactory {
+public class DAOFactory {
 	
 	private final EntityManagerFactory managerFactory = 
 		Persistence.createEntityManagerFactory("dev_sigtar");
@@ -16,5 +16,11 @@ public class TarefaDAOFactory {
 	public TarefaDAO buildTarefaDAO() {
 		EntityManager em = managerFactory.createEntityManager();
 		return new TarefaDAOImpl(em);
+	}
+	
+	@Produces
+	public UsuarioDAO buildUsuarioDAO() {
+		EntityManager em = managerFactory.createEntityManager();
+		return new UsuarioDAOImpl(em);
 	}
 }

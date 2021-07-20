@@ -4,11 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+//import javax.persistence.EnumType;
+//import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,7 +32,7 @@ public class Tarefa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id")
+	@Column(name="tarefa_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
@@ -39,14 +42,13 @@ public class Tarefa implements Serializable {
 	@Column(name="descricao")
 	private String descricao;
 	
-	//@Column(name="fk_responsavel")
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//private Usuario responsavel;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="usuario_id")
+	private Usuario responsavel;
 	
-	// TODO: Trocar por enumerate
 	@Column(name="prioridade")
-	@Enumerated(EnumType.STRING)
-	private Prioridade prioridade;
+	//@Enumerated(EnumType.STRING)
+	private String prioridade;
 	
 	@Column(name="concluida")
 	private Boolean concluida;
@@ -75,19 +77,19 @@ public class Tarefa implements Serializable {
 		this.descricao = descricao;
 	}
 
-	/*public Usuario getResponsavel() {
+	public Usuario getResponsavel() {
 		return responsavel;
 	}
 
 	public void setResponsavel(Usuario responsavel) {
 		this.responsavel = responsavel;
-	}*/
+	}
 
-	public Prioridade getPrioridade() {
+	public String getPrioridade() {
 		return prioridade;
 	}
 
-	public void setPrioridade(Prioridade prioridade) {
+	public void setPrioridade(String prioridade) {
 		this.prioridade = prioridade;
 	}
 	
